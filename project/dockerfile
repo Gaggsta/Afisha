@@ -1,0 +1,12 @@
+FROM python:3
+ENV PYTHONUNBUFFERED 1
+RUN mkdir /project
+WORKDIR /project
+ADD requirements.txt /project/
+COPY start.sh /start.sh
+
+RUN /usr/local/bin/python -m pip install --upgrade pip
+RUN pip install -r requirements.txt
+ADD . /project
+RUN ls -all
+CMD ["sh","/start.sh"]

@@ -1,0 +1,79 @@
+version: '3'
+
+services:
+  project:  &base_config
+    build: ./project
+    restart: always
+    env_file:
+      - ./.env.dev
+    volumes:
+      - ./project:/project
+      - static:/project/static
+      - media:/project/media
+    expose:
+      - "8000"
+    depends_on:
+      - db
+      - redis
+  celery:
+    <<: *base_config
+    command: celery -A project worker --beat --scheduler django --loglevel=info
+
+  afisha_nuxt:
+    build: ./afisha_nuxt
+    restart: always
+    volumes:
+      - ./afisha_nuxt:/afisha_nuxt
+    expose:
+      - "3000"
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - project
+  nginx:
+    image: nginx:latest
+    container_name: ng01
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - static:/var/www/static
+      - media:/var/www/media
+      - ./nginx:/etc/nginx/conf.d
+      - ./logs/nginx:/var/log/nginx/
+    # command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    depends_on:
+      - project
+      - afisha_nuxt
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - ./docker_files/postgres_data/:/var/lib/postgresql/data
+    env_file:
+      - ./.env.dev
+  redis:
+    container_name: redis
+    image: redis
+    restart: always
+    command:
+      - 'redis-server'
+      - '--loglevel ${REDIS_LOGLEVEL:-warning}'
+      - '--save 900 1'
+      - '--save 300 10'
+      - '--save 60 10000'
+      - '--maxmemory ${REDIS_MAXMEM:-50mb}'
+      - '--maxmemory-policy ${REDIS_POLICY:-noeviction}'
+
+    volumes:
+      - ./docker_files/redis_data/:/data
+  # certbot:
+  #   image: certbot/certbot
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ./docker_files/certbot/conf:/etc/letsencrypt
+  #     - ./docker_files/certbot/www:/var/www/certbot
+  #   entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+volumes:
+  static:
+  media:
