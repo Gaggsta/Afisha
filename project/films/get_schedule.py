@@ -33,37 +33,42 @@ class Get_sessions():
             datetime.today()-timedelta(days=45), "%Y")
         kp_film = requests.get(
             f"https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword={name_film}&page=1", headers=kp_header)
-        films = kp_film.json()
-        if kp_film.status_code == 200 and films['films']:
-            a = iter(films['films'])
-            try:
-                film = next(a)
-                while film["year"] != current_year or film["year"] != last_month_year:
-                    film = next(a)
-            except StopIteration:
-                print(name_film)
-                film = films['films'][0]
-            kp_film_info = requests.get(
-                f"https://kinopoiskapiunofficial.tech/api/v2.1/films/{film['filmId']}", headers=kp_header)
-            if kp_film_info.status_code == 200:
-                kp_film_info = kp_film_info.json()
-                print(name_film, kp_film_info)
-                for key in kp_film_info['data']:
-                    if not kp_film_info['data'][key]:
-                        kp_film_info['data'][key] = 0
+        if kp_film.status_code == 200:
+            films = kp_film.json()
+            if films['films']:
+                a = iter(films['films'])
                 try:
-                    kp_film_info['data']['filmLength'] = int(
-                        kp_film_info['data']['filmLength'])
-                except ValueError:
-                    duration = kp_film_info['data']['filmLength'].split(
-                        ':')
-                    kp_film_info['data']['filmLength'] = (
-                        int(duration[0]) * 60) + int(duration[1])
-                kp_film_info['data']['rating'] = film['rating']
+                    film = next(a)
+                    while film["year"] != current_year or film["year"] != last_month_year:
+                        film = next(a)
+                except StopIteration:
+                    print(name_film)
+                    film = films['films'][0]
+                kp_film_info = requests.get(
+                    f"https://kinopoiskapiunofficial.tech/api/v2.1/films/{film['filmId']}", headers=kp_header)
+                if kp_film_info.status_code == 200:
+                    kp_film_info = kp_film_info.json()
+                    print(name_film, kp_film_info)
+                    for key in kp_film_info['data']:
+                        if not kp_film_info['data'][key]:
+                            kp_film_info['data'][key] = 0
+                    try:
+                        kp_film_info['data']['filmLength'] = int(
+                            kp_film_info['data']['filmLength'])
+                    except ValueError:
+                        duration = kp_film_info['data']['filmLength'].split(
+                            ':')
+                        kp_film_info['data']['filmLength'] = (
+                            int(duration[0]) * 60) + int(duration[1])
+                    kp_film_info['data']['rating'] = film['rating']
+                else:
+                    print('Info cinema by ID doesn`t work ', name_film)
+                    kp_film_info = {
+                        'data': {'ratingAgeLimits': 0, 'filmLength': 0, 'rating': 0.0, 'description': '', 'nameRu': film['nameRu'], 'posterUrlPreview': alt_picture}}
             else:
-                print('Info cinema by ID doesn`t work ', name_film)
+                print('Search by keyword doesn`t work ', name_film)
                 kp_film_info = {
-                    'data': {'ratingAgeLimits': 0, 'filmLength': 0, 'rating': 0.0, 'description': '', 'nameRu': film['nameRu'], 'posterUrlPreview': alt_picture}}
+                    'data': {'ratingAgeLimits': 0, 'filmLength': 0, 'rating': 0.0, 'description': '', 'nameRu': name_film, 'posterUrlPreview': alt_picture}}
         else:
             print('Search by keyword doesn`t work ', name_film)
             kp_film_info = {
@@ -141,6 +146,7 @@ class Get_sessions():
             time.sleep(random.randint(1, 7) + 1)
             date = datetime.strftime(
                 datetime.today()+timedelta(days=day), "%Y.%m.%d")
+            print("new DAY",date)
             req = requests.get(
                 f'https://kassa.rambler.ru/kaliningrad/cinema/{name[1]}?date={date}&ajax=true', headers={'user-agent': r_ua})
             if req.status_code == 200:
