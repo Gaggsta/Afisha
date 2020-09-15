@@ -36,12 +36,15 @@ services:
     restart: always
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - static:/var/www/static
       - media:/var/www/media
       - ./nginx:/etc/nginx/conf.d
       - ./logs/nginx:/var/log/nginx/
-    # command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+      - ./docker_files/certbot/conf:/etc/letsencrypt
+      - ./docker_files/certbot/www:/var/www/certbot
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     depends_on:
       - project
       - afisha_nuxt
@@ -67,13 +70,13 @@ services:
 
     volumes:
       - ./docker_files/redis_data/:/data
-  # certbot:
-  #   image: certbot/certbot
-  #   restart: unless-stopped
-  #   volumes:
-  #     - ./docker_files/certbot/conf:/etc/letsencrypt
-  #     - ./docker_files/certbot/www:/var/www/certbot
-  #   entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - ./docker_files/certbot/conf:/etc/letsencrypt
+      - ./docker_files/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 volumes:
   static:
   media:

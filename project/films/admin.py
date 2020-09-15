@@ -15,7 +15,7 @@ class PhonesAdmin(admin.ModelAdmin):
 
 class FilmsAdmin(admin.ModelAdmin):
     model = Film
-    list_display = ['name', 'afisha_picture', 'age_allowed', 'mark_kp']
+    list_display = ['name', 'afisha_picture', 'age_allowed', 'mark_kp','karo_id','rambler_id']
 
 
 class SessionsAdmin(admin.ModelAdmin):
