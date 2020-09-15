@@ -13,3 +13,4 @@ afisha_nuxt/dist
 .dev
 docker_files/postgres_data/*
 docker_files/redis_data/*
+nuxt.config.js
