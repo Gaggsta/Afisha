@@ -13,7 +13,11 @@
 						:alt="film.name+' постер'"
 						:title="'Фильм '+ film.name"
 					/>
-					<div class="rating" v-if="film.mark_kp">{{film.mark_kp}}</div>
+					<div class="rating" v-if="film.mark_kp">
+						<div style="font-family: Ubuntu; font-size: 16px">Кинопоиск:</div>
+						<div>{{film.mark_kp}}</div>
+					</div>
+					<div class="age">{{film.age_allowed}}+</div>
 				</div>
 				<div id="filmTitle">{{film.name}}</div>
 			</div>
@@ -92,14 +96,29 @@
 	.rating {
 		position: absolute;
 		z-index: 3;
-		font-size: 22px;
+		font-size: 20px;
+		height: 30px;
+		width: auto;
+		background-color: rgba(230, 251, 113, 1);
+		right: 0px;
+		bottom: 0px;
+		padding-top: 5px;
+		text-align: center;
+		padding-inline: 5px;
+	}
+	.rating div {
+		display: inline-block;
+	}
+	.age {
+		position: absolute;
+		z-index: 3;
+		font-size: 20px;
 		height: 30px;
 		width: 45px;
 		background-color: rgba(230, 251, 113, 1);
-		left: 133px;
-		top: 200px;
+		right: 0px;
+		bottom: 30px;
 		padding-top: 5px;
-		box-shadow: 2px 5px 2px -2px rgba(0, 0, 0, 0.5);
 		text-align: center;
 		padding-left: 2px;
 	}
