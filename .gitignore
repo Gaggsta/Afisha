@@ -1,3 +1,4 @@
 logs/
 docker_files/
 nuxt.config.js
+.env.dev
