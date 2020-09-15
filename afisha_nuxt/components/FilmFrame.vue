@@ -14,6 +14,7 @@
 						:title="'Фильм '+ film.name"
 					/>
 					<div class="rating" v-if="film.mark_kp">{{film.mark_kp}}</div>
+					<div class="age">{{film.age_allowed}}</div>
 				</div>
 				<div id="filmTitle">{{film.name}}</div>
 			</div>
@@ -98,6 +99,20 @@
 		background-color: rgba(230, 251, 113, 1);
 		left: 133px;
 		top: 200px;
+		padding-top: 5px;
+		box-shadow: 2px 5px 2px -2px rgba(0, 0, 0, 0.5);
+		text-align: center;
+		padding-left: 2px;
+	}
+	.age {
+		position: absolute;
+		z-index: 3;
+		font-size: 22px;
+		height: 30px;
+		width: 45px;
+		background-color: rgba(230, 251, 113, 1);
+		left: 133px;
+		top: 245px;
 		padding-top: 5px;
 		box-shadow: 2px 5px 2px -2px rgba(0, 0, 0, 0.5);
 		text-align: center;
