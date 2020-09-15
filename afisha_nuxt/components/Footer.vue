@@ -29,9 +29,11 @@
 			setTopUsrSug() {
 				setTimeout(() => {
 					var el = document.getElementById("usrSgstLayOut");
-					el.style.top = window.scrollY + "px";
-					el.style.width = window.innerWidth + "px";
-					el.style.height = window.innerHeight + "px";
+					if (el) {
+						el.style.top = window.scrollY + "px";
+						el.style.width = window.innerWidth + "px";
+						el.style.height = window.innerHeight + "px";
+					}
 				}, 1);
 			},
 			setTopModal() {
@@ -41,9 +43,11 @@
 				this.usrSugested = localStorage.usrSugested = false;
 				setTimeout(() => {
 					var el = document.getElementById("usrSgstLayOut");
-					el.style.top = window.scrollY + "px";
-					el.style.width = window.innerWidth + "px";
-					el.style.height = window.innerHeight + "px";
+					if (el) {
+						el.style.top = window.scrollY + "px";
+						el.style.width = window.innerWidth + "px";
+						el.style.height = window.innerHeight + "px";
+					}
 				}, 10);
 				if (process.browser) {
 					window.addEventListener("scroll", this.setTopUsrSug);
