@@ -25,7 +25,7 @@ class SessionsListView(APIView):
             films = Film.objects.filter(id__in=Session.objects.filter(
                 date__range=(make_aware(start_date), make_aware(end_date))).values_list('film'))
             queryset = FilmsSerializer(
-                instance=films, many=True, context={"day": day})
+                instance=films, many=True, context={"start_date": start_date,"end_date":end_date})
             return Response(queryset.data)
         else:
             res = {"code": 400, "message": "Bad Requset"}

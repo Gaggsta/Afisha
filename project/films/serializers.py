@@ -14,13 +14,9 @@ class PhoneSerializer(serializers.ModelSerializer):
 class FilteredListSerializer(serializers.ListSerializer):
 
     def to_representation(self, data):
-        start_date = datetime.today(
-        ) + timedelta(days=self.context['day']) - timedelta(minutes=10)
-        end_date = datetime.combine(datetime.date(
-            datetime.today() + timedelta(days=self.context['day']+1)), time(0, 0))
         data = data.filter(film=Film.objects.get(
             name=self.context['film'])).filter(
-                date__range=(make_aware(start_date), make_aware(end_date))).order_by('date')
+                date__range=(make_aware(self.context['start_date']), make_aware(self.context['end_date']))).order_by('date')
         return super(FilteredListSerializer, self).to_representation(data)
 
 
@@ -57,7 +53,7 @@ class FilmsSerializer(serializers.ModelSerializer):
 
     def get_cinemas(self, obj):
         return CinemaSerializer(Cinema.objects.all(), many=True, context={
-            "film": obj.name, "day": self.context['day']}).data
+            "film": obj.name, "start_date": self.context['start_date'],"end_date": self.context['end_date']}).data
 
     class Meta:
         model = Film
