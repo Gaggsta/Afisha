@@ -23,7 +23,7 @@ class SessionsListView(APIView):
             end_date = datetime.combine(datetime.date(
                 today + timedelta(days=day+1)), time(0, 0))
             films = Film.objects.filter(id__in=Session.objects.filter(
-                date__range=(make_aware(start_date), make_aware(end_date))).values_list('film'))
+                date__range=(make_aware(start_date), make_aware(end_date))).values_list('film')).order_by('name')
             queryset = FilmsSerializer(
                 instance=films, many=True, context={"start_date": start_date,"end_date":end_date})
             return Response(queryset.data)

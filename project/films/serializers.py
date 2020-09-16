@@ -30,12 +30,11 @@ class SessionsListSerializer(serializers.ModelSerializer):
 
 class CinemaSerializer(serializers.ModelSerializer):
     """Info of cinema"""
-    phones = serializers.StringRelatedField(many=True)
     sessions = SessionsListSerializer(many=True, read_only=True)
 
     class Meta:
         model = Cinema
-        fields = ('name', 'address', 'phones',  'cinema_icon', 'sessions')
+        fields = ('name', 'sessions')
 
 
 class CinemasListSerializer(serializers.ModelSerializer):

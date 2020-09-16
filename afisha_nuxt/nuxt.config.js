@@ -23,10 +23,6 @@ export default {
       charset: 'utf-8'
     },
     {
-      name: "yandex-verification",
-      content: "82f916d3b1843847"
-    },
-    {
       name: 'viewport',
       content: 'width=device-width, initial-scale=1'
     },

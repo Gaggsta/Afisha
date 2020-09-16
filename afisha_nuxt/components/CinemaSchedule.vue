@@ -29,7 +29,7 @@
 		props: ["cinema"],
 		methods: {
 			createModal(sesionId) {
-				if (this.cinema.name == "Каро 7 Калининград Плаза") {
+				if (this.cinema.name == "КАРО 7 Плаза") {
 					if (window.innerWidth > 850) {
 						var createdEl = document.createElement("div");
 						var doc = document.getElementById("__nuxt");
