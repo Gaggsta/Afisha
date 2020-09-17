@@ -1,6 +1,8 @@
-logs/
-docker_files/
+logs/*
+docker_files/*
 nuxt.config.js
 .env.dev
 .gitignore
 *.pyc
+data/*
+.logs

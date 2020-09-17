@@ -11,11 +11,12 @@
 					v-on:click="createModal(session.external_id)"
 					:title="'Купить билет в '+ cinema.name"
 				>
-					<div id="typeSession">
+					<div id="typeSession" v-if="Math.floor(session.price)>0">
 						{{session.session_format.slice(0,7)}}
 						<br />
 						от {{Math.floor(session.price)}}р.
 					</div>
+					<div v-else id="typeSession" style="padding-left: 10px">{{session.session_format.slice(0,7)}}</div>
 					<div id="timeSession">{{session.time}}</div>
 				</div>
 			</div>
