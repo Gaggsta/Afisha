@@ -48,5 +48,6 @@
 		align-self: center;
 		padding: 2%;
 		text-align: start;
+		color: black;
 	}
 </style>

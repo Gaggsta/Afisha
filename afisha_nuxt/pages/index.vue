@@ -105,7 +105,7 @@
 	}
 	.container {
 		text-align: center;
-		color: black;
+		color: white;
 		display: grid;
 		grid-template-columns: minmax(150px, 1fr) minmax(max-content, 4fr) minmax(
 				150px,
@@ -115,11 +115,6 @@
 	#leftAdd {
 	}
 	#rightAdd {
-	}
-	#button {
-		width: 60px;
-		height: 60px;
-		background-color: black;
 	}
 	#scrollToTop {
 		position: fixed;
@@ -136,7 +131,8 @@
 	}
 	body {
 		margin: 0px;
-		background-color: cornsilk;
+		background: linear-gradient(132.41deg, #001d2d 18.16%, #002a4a 95.73%);
+		background: linear-gradient(116.12deg, #001d2d 23.32%, #014274 79.96%);
 	}
 	@media (max-width: 850px) {
 		.container {

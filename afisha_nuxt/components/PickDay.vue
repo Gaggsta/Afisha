@@ -1,11 +1,11 @@
 <template>
 	<div id="PickDay">
 		<div class="today day" v-on:click="setDay(0)" :title="'Расписание кинотеатров сегодя'">
-			<h3>Сегодня</h3>
+			<h3 style="border-right: 1px solid white;">Сегодня</h3>
 			<hr class="dayLine today" />
 		</div>
 		<div class="tommorow day" v-on:click="setDay(1)" :title="'Расписание кинотеатров завтра'">
-			<h3>Завтра</h3>
+			<h3 style="border-right: 1px solid white;">Завтра</h3>
 			<hr class="dayLine tommorow" />
 		</div>
 		<div class="AftTomm day" v-on:click="setDay(2)" :title="'Расписание кинотеатров послезавтра'">
@@ -44,8 +44,8 @@
 <style>
 	.dayLine {
 		width: 80%;
-		color: #fe3f44;
-		background-color: #fe3f44;
+		color: #f2d32c;
+		background-color: #f2d32c;
 		border: 0px;
 		height: 2px;
 		align-self: center;
@@ -57,6 +57,7 @@
 		grid-template-rows: 30px 5px;
 		-webkit-transition: all 0.3s cubic-bezier(0.22, 0.84, 0.01, 1);
 		transition: all 0.3s cubic-bezier(0.22, 0.84, 0.01, 1);
+		padding-top: 10px;
 	}
 	.day:hover {
 		cursor: pointer;
@@ -72,10 +73,10 @@
 	#PickDay {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
-		background-color: #82b5dd;
+		background-color: #344954;
 		font-size: 24px;
 		grid-auto-flow: column;
-		padding-top: 10px;
+
 		position: sticky;
 		top: 0px;
 		z-index: 100;

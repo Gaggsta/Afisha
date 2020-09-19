@@ -6,3 +6,5 @@ nuxt.config.js
 *.pyc
 data/*
 .logs
+project/films/__pycache__/*
+project/project/__pycache__/*

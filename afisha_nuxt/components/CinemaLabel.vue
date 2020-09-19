@@ -18,23 +18,23 @@
 				if (cinemaName == pickedCinema) {
 					document.getElementsByClassName(
 						cinemaName
-					)[0].children[0].style.borderLeft = "0px solid #fe3f44";
+					)[0].children[0].style.borderLeft = "0px solid #F2D32C";
 					document.getElementsByClassName(
 						cinemaName
-					)[0].children[0].style.borderTop = "0px solid #fe3f44";
+					)[0].children[0].style.borderTop = "0px solid #F2D32C";
 					this.$store.commit("films/setpickedCinema", "all");
 				} else {
 					for (let i of document.getElementsByClassName("cinemaPic")) {
-						i.children[0].style.border = "0px solid #fe3f44";
+						i.children[0].style.border = "0px solid #F2D32C";
 					}
 					this.$store.commit("films/setpickedCinema", cinemaName);
 					document.getElementsByClassName(
 						cinemaName
-					)[0].children[0].style.borderLeft = "2px solid #fe3f44";
+					)[0].children[0].style.borderLeft = "2px solid #F2D32C";
 					document.getElementsByClassName(
 						cinemaName
-					)[0].children[0].style.borderTop = "2px solid #fe3f44";
-					//this.$el.style.outline = "2px solid #fe3f44";
+					)[0].children[0].style.borderTop = "2px solid #F2D32C";
+					//this.$el.style.outline = "2px solid #F2D32C";
 				}
 			},
 		},

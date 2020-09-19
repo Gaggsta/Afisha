@@ -2,7 +2,7 @@
 	<div id="mainFrame">
 		<div id="topAdd"></div>
 		<div id="headLine">
-			<div id="textName">{{this.sitelabel}}</div>
+			<div id="textName" v-on:click="gotosite">{{this.sitelabel}}</div>
 			<div id="cinemaPool">
 				<div class="cinemaPic" v-for="cinema in cinemas" :key="cinema.name" :class="cinema.name" )>
 					<CinemaLabel :cinema="cinema" />
@@ -51,6 +51,10 @@
 					this.sitelabel = "КИНО КАЛИНИНГРАД";
 				}
 			},
+
+			gotosite() {
+				window.location.href = "/";
+			},
 		},
 
 		created() {
@@ -67,12 +71,12 @@
 		display: grid;
 		grid-template-rows: 0px 55px 55px 1fr 70px;
 		margin-top: 15px;
+		background: rgba(117, 127, 131, 0.44);
 	}
 	#scheduleFrame {
 		padding: 2%;
 		display: grid;
 		grid-gap: 15px;
-		background-color: #82b5dd;
 	}
 	#noFilms {
 		display: grid;
@@ -92,6 +96,10 @@
 		display: grid;
 		grid-template-columns: minmax(300px 3fr) 2fr;
 		grid-auto-flow: column;
+		padding-inline: 10px;
+		-webkit-box-shadow: 0px 9px 10px -8px rgba(255, 255, 255, 1);
+		-moz-box-shadow: 0px 9px 10px -8px rgba(255, 255, 255, 1);
+		box-shadow: 0px 9px 10px -8px rgba(255, 255, 255, 1);
 	}
 
 	#textName {
@@ -105,6 +113,7 @@
 		justify-content: right;
 		grid-gap: 10px;
 		padding: 6px;
+		padding-right: 0px;
 	}
 </style>
 

@@ -9,7 +9,7 @@
 				<h3>Пользовательское соглашение</h3>
 				<hr />
 				<p>Принимая данное соглашение или продолжая использование сайта пользователь соглашается с условиями использования сайта.</p>
-				<p>Сайт kino-39.ru предоставляет лишь собранную информацию опубликованную в открытом доступе на других сайтах в сети Интернет. Информация предоставляется по принципу "как есть" и не подразумевает под собой ответсвенности за ее неточность.</p>
+				<p>Сайт kino-39.ru предоставляет лишь собранную информацию, опубликованную в открытом доступе на других сайтах в сети Интернет. Информация предоставляется по принципу "как есть" и не подразумевает под собой ответственности за ее неточность.</p>
 				<p>Для приобретения билетов сайт перенаправляет пользователя на другой интернет ресурс, непосредственного продавца билетов. Пользователь должен самостоятельно удостовериться в правильности перенаправления(соответствие фильма, кинотеатра и времени сеанса) перед тем как совершить покупку.</p>
 				<p>Сайт не собирает, не получает никаких данных от пользователя и не проводит никаких операций, будь то денежные переводы или продажа.</p>
 				<div id="accept" v-on:click="destroyUsrSugested">Принять</div>
@@ -22,7 +22,7 @@
 		name: "Footer",
 		components: {},
 		data: function () {
-			return { usrSugested: false };
+			return { usrSugested: true };
 		},
 
 		methods: {
@@ -103,6 +103,8 @@
 		mounted() {
 			if (localStorage.usrSugested) {
 				this.usrSugested = localStorage.usrSugested;
+			} else {
+				this.usrSugested = false;
 			}
 		},
 	};
@@ -114,20 +116,22 @@
 		gap: 10px;
 		justify-items: center;
 		height: fit-content;
+		color: black;
+		padding-left: 15px;
 	}
 
 	#feedBack {
 		cursor: pointer;
 		padding: 12px;
-		background-color: #e6fb71;
-		border-radius: 10px 10px 10px 10px;
+		background-color: #f2d32c;
+		border-radius: 5px 5px 5px 5px;
 		box-shadow: 4px 4px 2px -1px rgba(0, 0, 0, 0.5);
 	}
 	#usrSgst {
 		cursor: pointer;
 		padding: 12px;
-		border-radius: 10px 10px 10px 10px;
-		background-color: #e6fb71;
+		border-radius: 5px 5px 5px 5px;
+		background-color: #f2d32c;
 		box-shadow: 4px 4px 2px -1px rgba(0, 0, 0, 0.5);
 	}
 	#usrSgstLayOut {
@@ -155,8 +159,7 @@
 	}
 	hr {
 		width: 80%;
-		color: #fe3f44;
-		background-color: #fe3f44;
+		background-color: black;
 		border: 0px;
 		height: 2px;
 		align-self: center;
@@ -181,7 +184,7 @@
 	}
 	#accept {
 		cursor: pointer;
-		border: 1px solid #fe3f44;
+		border: 1px solid #f2d32c;
 		background-color: #82b5dd;
 		width: 100px;
 		height: 35px;

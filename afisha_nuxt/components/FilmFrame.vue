@@ -1,25 +1,27 @@
 <template>
 	<div id="g">
-		<PopUpFilmInfo v-if="isFilmInfoVisible" @closePopUp="closePopUp">
-			<h3 class="popUpName">{{film.name}}</h3>
-			<p class="popUpInfo">{{film.info}}</p>
-		</PopUpFilmInfo>
 		<div id="Film_frame">
+			<PopUpFilmInfo v-if="isFilmInfoVisible" @closePopUp="closePopUp">
+				<h3 class="popUpName">{{film.name}}</h3>
+				<p class="popUpInfo">{{film.info}}</p>
+			</PopUpFilmInfo>
 			<div id="image_field" v-on:click="showPopUpFilmInfo()">
-				<div id="image">
-					<img
-						id="img"
-						:src="film.afisha_picture"
-						:alt="film.name+' постер'"
-						:title="'Фильм '+ film.name"
-					/>
-					<div class="rating" v-if="film.mark_kp">
-						<div style="font-family: Ubuntu; font-size: 16px">Кинопоиск:</div>
-						<div>{{film.mark_kp}}</div>
+				<div style="position: sticky;top: 4em;">
+					<div id="image">
+						<img
+							id="img"
+							:src="film.afisha_picture"
+							:alt="film.name+' постер'"
+							:title="'Фильм '+ film.name"
+						/>
+						<div class="rating" v-if="film.mark_kp">
+							<div style="font-family: Ubuntu; font-size: 16px">Кинопоиск:</div>
+							<div>{{film.mark_kp}}</div>
+						</div>
+						<div class="age">{{film.age_allowed}}+</div>
 					</div>
-					<div class="age">{{film.age_allowed}}+</div>
+					<div id="filmTitle">{{film.name}}</div>
 				</div>
-				<div id="filmTitle">{{film.name}}</div>
 			</div>
 			<div id="schedule">
 				<div v-for="cinema in chosedCinema" :key="cinema.name" v-if="cinema.sessions.length >0">
@@ -90,7 +92,7 @@
 	}
 	#image_field {
 		width: 180px;
-		margin-top: 10%;
+		margin-top: 15px;
 		margin-left: 10%;
 	}
 	.rating {
@@ -99,12 +101,14 @@
 		font-size: 20px;
 		height: 30px;
 		width: auto;
-		background-color: rgba(230, 251, 113, 1);
+		background-color: #f2d32c;
 		right: 0px;
 		bottom: 0px;
 		padding-top: 5px;
 		text-align: center;
 		padding-inline: 5px;
+		color: black;
+		border-radius: 4px 4px 4px 4px;
 	}
 	.rating div {
 		display: inline-block;
@@ -115,22 +119,23 @@
 		font-size: 20px;
 		height: 30px;
 		width: 45px;
-		background-color: rgba(230, 251, 113, 1);
+		background-color: #f2d32c;
 		right: 0px;
 		bottom: 30px;
 		padding-top: 5px;
 		text-align: center;
 		padding-left: 2px;
+		color: black;
+		border-radius: 4px 4px 4px 4px;
 	}
 	#image {
 		width: 180px;
 		height: 270px;
-		border: 2px solid #fe3f44;
-		box-shadow: 5px 5px 2px -2px rgba(0, 0, 0, 0.5);
 		margin-bottom: 7px;
-		position: sticky;
-		top: 4em;
 		cursor: pointer;
+		position: relative;
+		box-shadow: 0px 0px 10px 5px rgba(255, 254, 254, 0.25);
+		border-radius: 5px;
 	}
 	#img {
 		height: 100%;
@@ -145,12 +150,13 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fill, 272px);
 		grid-gap: 20px;
+		margin-top: 15px;
 		margin-left: 20px;
 	}
 	#filmLine {
 		width: 85%;
-		color: #fe3f44;
-		background-color: #fe3f44;
+		color: #f2d32c;
+		background-color: #f2d32c;
 		border: 0px;
 		height: 4px;
 		align-self: center;

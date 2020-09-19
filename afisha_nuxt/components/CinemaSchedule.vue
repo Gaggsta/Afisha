@@ -16,7 +16,11 @@
 						<br />
 						от {{Math.floor(session.price)}}р.
 					</div>
-					<div v-else id="typeSession" style="padding-left: 10px">{{session.session_format.slice(0,7)}}</div>
+					<div
+						v-else
+						id="typeSession"
+						style="padding-left: 10px; font-size: 15px;"
+					>{{session.session_format.slice(0,7)}}</div>
 					<div id="timeSession">{{session.time}}</div>
 				</div>
 			</div>
@@ -76,23 +80,23 @@
 				if (cinemaName == pickedCinema) {
 					document.getElementsByClassName(
 						cinemaName
-					)[0].children[0].style.borderLeft = "0px solid #fe3f44";
+					)[0].children[0].style.borderLeft = "0px solid #F2D32C";
 					document.getElementsByClassName(
 						cinemaName
-					)[0].children[0].style.borderTop = "0px solid #fe3f44";
+					)[0].children[0].style.borderTop = "0px solid #F2D32C";
 					this.$store.commit("films/setpickedCinema", "all");
 				} else {
 					for (let i of document.getElementsByClassName("cinemaPic")) {
-						i.children[0].style.border = "0px solid #fe3f44";
+						i.children[0].style.border = "0px solid #F2D32C";
 					}
 					this.$store.commit("films/setpickedCinema", cinemaName);
 					document.getElementsByClassName(
 						cinemaName
-					)[0].children[0].style.borderLeft = "2px solid #fe3f44";
+					)[0].children[0].style.borderLeft = "2px solid #F2D32C";
 					document.getElementsByClassName(
 						cinemaName
-					)[0].children[0].style.borderTop = "2px solid #fe3f44";
-					//this.$el.style.outline = "2px solid #fe3f44";
+					)[0].children[0].style.borderTop = "2px solid #F2D32C";
+					//this.$el.style.outline = "2px solid #F2D32C";
 				}
 			},
 		},
@@ -125,8 +129,8 @@
 	#cinemaLine {
 		width: 65%;
 		margin: 0px;
-		color: #fe3f44;
-		background-color: #fe3f44;
+		color: #f2d32c;
+		background-color: #f2d32c;
 		border: 0px;
 		height: 2px;
 		align-self: left;
@@ -140,21 +144,23 @@
 		text-align: center;
 		width: 130px;
 		height: 35px;
-		background-color: #e6fb71;
+		background-color: #f2d32c;
 		display: flex;
 		font-family: Russo One;
 		font-size: 15px;
 		box-shadow: 4px 4px 2px -1px rgba(0, 0, 0, 0.5);
 		cursor: pointer;
+		color: black;
+		border-radius: 4px;
 	}
 	#typeSession {
 		width: 70px;
 		height: 35px;
-		padding-left: 5px;
+		padding-left: 10px;
 		font-family: Ubuntu;
 		font-style: normal;
 		font-weight: normal;
-		font-size: 10px;
+		font-size: 12px;
 		line-height: 11px;
 		display: flex;
 		align-items: center;
