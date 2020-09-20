@@ -40,7 +40,9 @@
 						var doc = document.getElementById("__nuxt");
 						createdEl.setAttribute("id", "modalFrame");
 						createdEl.style =
-							"width:100%; height: 100%; background-color:RGBA(0, 0, 0,0.68); position: absolute; z-index:900; left: 0; top:0;" +
+							"width:100%; height: 100%; background-color:RGBA(0, 0, 0,0.68); position: absolute; z-index:900; left: 0; top:" +
+							window.scrollY +
+							"px;" +
 							"display: grid; justify-items: center; align-items: center;";
 						createdEl.onclick = this.destroyModal;
 						doc.appendChild(createdEl);
