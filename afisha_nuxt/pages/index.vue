@@ -16,7 +16,8 @@
 	export default {
 		head() {
 			return {
-				title: "Кино Калининград",
+				title:
+					"Афиша Кино Калининград. Киноафиша Синема Парк Европа, Киносфера, Каро 7 Калининград-плаза, Эпицентр ",
 				meta: [
 					// hid is used as unique identifier. Do not use `vmid` for it as it will not work
 					{
