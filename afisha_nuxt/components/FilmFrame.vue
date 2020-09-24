@@ -2,29 +2,36 @@
 	<div id="g">
 		<div id="Film_frame">
 			<PopUpFilmInfo v-if="isFilmInfoVisible" @closePopUp="closePopUp">
-				<h3 class="popUpName">{{film.name}}</h3>
-				<p class="popUpInfo">{{film.info}}</p>
+				<h3 class="popUpName">{{ film.name }}</h3>
+				<p class="popUpInfo">{{ film.info }}</p>
 			</PopUpFilmInfo>
 			<div id="image_field" v-on:click="showPopUpFilmInfo()">
-				<div style="position: sticky;top: 4em;">
+				<div style="position: sticky; top: 4em">
 					<div id="image">
+						<p style="z-index: -2000; color: transparent; font-size: 0px">
+							{{ "Кино " + film.name }}
+						</p>
 						<img
 							id="img"
 							:src="film.afisha_picture"
-							:alt="film.name+' постер'"
-							:title="'Фильм '+ film.name"
+							:alt="film.name + ' постер'"
+							:title="'Фильм ' + film.name"
 						/>
 						<div class="rating" v-if="film.mark_kp">
 							<div style="font-family: Ubuntu; font-size: 16px">Кинопоиск:</div>
-							<div>{{film.mark_kp}}</div>
+							<div>{{ film.mark_kp }}</div>
 						</div>
-						<div class="age">{{film.age_allowed}}+</div>
+						<div class="age">{{ film.age_allowed }}+</div>
 					</div>
-					<div id="filmTitle">{{film.name}}</div>
+					<div id="filmTitle">{{ film.name }}</div>
 				</div>
 			</div>
 			<div id="schedule">
-				<div v-for="cinema in chosedCinema" :key="cinema.name" v-if="cinema.sessions.length >0">
+				<div
+					v-for="cinema in chosedCinema"
+					:key="cinema.name"
+					v-if="cinema.sessions.length > 0"
+				>
 					<CinemaSchedule :cinema="cinema" />
 				</div>
 			</div>

@@ -2,9 +2,12 @@
 	<div
 		id="cinemaLabel"
 		v-on:click="setPickedCinema(cinema.name)"
-		:title="'Показать кино только '+ cinema.name"
+		:title="'Показать кино только ' + cinema.name"
 	>
-		<img id="img" :src="cinema.cinema_icon" :alt="cinema.name.slice(0,2)" />
+		<p style="z-index: -2000; color: transparent; font-size: 0px">
+			{{ "Кинотеатр " + cinema.name }}
+		</p>
+		<img id="img" :src="cinema.cinema_icon" :alt="cinema.name.slice(0, 2)" />
 	</div>
 </template>
 <script>

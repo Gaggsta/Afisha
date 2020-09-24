@@ -1,14 +1,32 @@
 <template>
 	<div id="PickDay">
-		<div class="today day" v-on:click="setDay(0)" :title="'Расписание кинотеатров сегодя'">
-			<h3 style="border-right: 1px solid white;">Сегодня</h3>
+		<div
+			class="today day"
+			v-on:click="setDay(0)"
+			:title="'Расписание кинотеатров сегодя'"
+		>
+			<p style="z-index: -2000; color: transparent; font-size: 0px">
+				Посмотреть кино сейчас Калининград
+			</p>
+			<h3 style="border-right: 1px solid white">Сегодня</h3>
 			<hr class="dayLine today" />
 		</div>
-		<div class="tommorow day" v-on:click="setDay(1)" :title="'Расписание кинотеатров завтра'">
-			<h3 style="border-right: 1px solid white;">Завтра</h3>
+		<div
+			class="tommorow day"
+			v-on:click="setDay(1)"
+			:title="'Расписание кинотеатров завтра'"
+		>
+			<p style="z-index: -2000; color: transparent; font-size: 0px">
+				Что в кино Калининград
+			</p>
+			<h3 style="border-right: 1px solid white">Завтра</h3>
 			<hr class="dayLine tommorow" />
 		</div>
-		<div class="AftTomm day" v-on:click="setDay(2)" :title="'Расписание кинотеатров послезавтра'">
+		<div
+			class="AftTomm day"
+			v-on:click="setDay(2)"
+			:title="'Расписание кинотеатров послезавтра'"
+		>
 			<h3>Послезавтра</h3>
 			<hr class="dayLine aft" />
 		</div>

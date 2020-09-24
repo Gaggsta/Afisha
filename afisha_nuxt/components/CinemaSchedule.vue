@@ -1,7 +1,9 @@
 <template>
 	<div id="cinemaSchedule">
-		<div id="cinema" :title="'Сеансы кинотеатра'+ cinema.name">
-			<h2 id="cinemaName" v-on:click="setPickedCinema(cinema.name)">{{cinema.name}}</h2>
+		<div id="cinema" :title="'Кино в кинотеатре ' + cinema.name">
+			<h2 id="cinemaName" v-on:click="setPickedCinema(cinema.name)">
+				{{ cinema.name }}
+			</h2>
 			<hr id="cinemaLine" />
 		</div>
 		<div id="sessions">
@@ -9,19 +11,21 @@
 				<div
 					id="session"
 					v-on:click="createModal(session.external_id)"
-					:title="'Купить билет в '+ cinema.name"
+					:title="'Купить билет в ' + cinema.name"
 				>
-					<div id="typeSession" v-if="Math.floor(session.price)>0">
-						{{session.session_format.slice(0,7)}}
+					<div id="typeSession" v-if="Math.floor(session.price) > 0">
+						{{ session.session_format.slice(0, 7) }}
 						<br />
-						от {{Math.floor(session.price)}}р.
+						от {{ Math.floor(session.price) }}р.
 					</div>
 					<div
 						v-else
 						id="typeSession"
-						style="padding-left: 10px; font-size: 15px;"
-					>{{session.session_format.slice(0,7)}}</div>
-					<div id="timeSession">{{session.time}}</div>
+						style="padding-left: 10px; font-size: 15px"
+					>
+						{{ session.session_format.slice(0, 7) }}
+					</div>
+					<div id="timeSession">{{ session.time }}</div>
 				</div>
 			</div>
 		</div>

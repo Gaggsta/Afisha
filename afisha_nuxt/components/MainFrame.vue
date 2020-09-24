@@ -2,16 +2,24 @@
 	<div id="mainFrame">
 		<div id="topAdd"></div>
 		<div id="headLine">
-			<div id="textName" v-on:click="gotosite">{{this.sitelabel}}</div>
+			<div id="textName" v-on:click="gotosite">
+				<h1>{{ this.sitelabel }}</h1>
+			</div>
 			<div id="cinemaPool">
-				<div class="cinemaPic" v-for="cinema in cinemas" :key="cinema.name" :class="cinema.name" )>
+				<div
+					class="cinemaPic"
+					v-for="cinema in cinemas"
+					:key="cinema.name"
+					:class="cinema.name"
+					)
+				>
 					<CinemaLabel :cinema="cinema" />
 				</div>
 			</div>
 		</div>
 		<PickDay />
 		<div id="scheduleFrame">
-			<div v-if="films.length<1" id="noFilms">
+			<div v-if="films.length < 1" id="noFilms">
 				<div></div>
 				<div>
 					<p>К сожалению, сеансов на этот день я не знаю 🙁</p>
@@ -104,7 +112,11 @@
 
 	#textName {
 		text-align: left;
+	}
+	h1 {
 		font-size: 45px;
+		margin: 0px;
+		font-weight: normal;
 	}
 	#cinemaPool {
 		display: grid;
