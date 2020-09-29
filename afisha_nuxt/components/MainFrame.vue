@@ -2,7 +2,7 @@
 	<div id="mainFrame">
 		<div id="topAdd"></div>
 		<div id="headLine">
-			<div id="textName" v-on:click="gotosite">
+			<div id="textName" v-on:click="gotosite" :title="origLoc">
 				<h1>{{ this.sitelabel }}</h1>
 			</div>
 			<div id="cinemaPool">
@@ -48,7 +48,7 @@
 			PickDay,
 		},
 		data: function () {
-			return { sitelabel: "" };
+			return { sitelabel: "", origLoc: "kino-39.ru" };
 		},
 		props: ["films", "cinemas"],
 		methods: {
@@ -61,7 +61,7 @@
 			},
 
 			gotosite() {
-				window.location.href = "/";
+				window.location.href = window.location.origin;
 			},
 		},
 

@@ -11,6 +11,9 @@ class Cinema(models.Model):
     address = models.CharField('Адрес', max_length=150)
     cinema_icon = models.ImageField(
         verbose_name='Обложка фильма', upload_to='images/', default='images/Cinema_label.jpg')
+    slug = models.CharField('Название транслитом', max_length=50, null=True)
+    info = models.TextField('Описание', max_length=2000, null=True)
+    url = models.CharField('URL сайта', max_length=100, null=True)
 
     def __str__(self):
         return self.name
