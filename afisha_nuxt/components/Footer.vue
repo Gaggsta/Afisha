@@ -1,18 +1,47 @@
 <template>
 	<div id="Footer">
-		<div id="feedBack" v-on:click="openFeedBack">Обратная связь</div>
+		<div class="topline">
+			<a class="linkfooter" href="/cinema">Кинотеатры Калининграда</a>
+			<div v-for="cinema in cinemas" v-bind:key="cinema.name">
+				<a class="linkfooter" v-bind:href="'/cinema/' + cinema.slug">{{
+					cinema.name
+				}}</a>
+			</div>
+		</div>
+		<div class="botomline">
+			<div class="clickabletext" v-on:click="openFeedBack">Обратная связь</div>
 
-		<div id="usrSgst" v-on:click="setUsrSugested">Пользовательское соглашение</div>
+			<div class="clickabletext" v-on:click="setUsrSugested">
+				Пользовательское соглашение
+			</div>
 
-		<div v-if="!usrSugested" id="usrSgstLayOut">
-			<div id="usrSgstText">
-				<h3>Пользовательское соглашение</h3>
-				<hr />
-				<p>Принимая данное соглашение или продолжая использование сайта пользователь соглашается с условиями использования сайта.</p>
-				<p>Сайт kino-39.ru предоставляет лишь собранную информацию, опубликованную в открытом доступе на других сайтах в сети Интернет. Информация предоставляется по принципу "как есть" и не подразумевает под собой ответственности за ее неточность.</p>
-				<p>Для приобретения билетов сайт перенаправляет пользователя на другой интернет ресурс, непосредственного продавца билетов. Пользователь должен самостоятельно удостовериться в правильности перенаправления(соответствие фильма, кинотеатра и времени сеанса) перед тем как совершить покупку.</p>
-				<p>Сайт не собирает, не получает никаких данных от пользователя и не проводит никаких операций, будь то денежные переводы или продажа.</p>
-				<div id="accept" v-on:click="destroyUsrSugested">Принять</div>
+			<div v-if="!usrSugested" id="usrSgstLayOut">
+				<div id="usrSgstText">
+					<h3>Пользовательское соглашение</h3>
+					<hr />
+					<p class="txtUserAccpting">
+						Принимая данное соглашение или продолжая использование сайта
+						пользователь соглашается с условиями использования сайта.
+					</p>
+					<p class="txtUserAccpting">
+						Сайт kino-39.ru предоставляет лишь собранную информацию,
+						опубликованную в открытом доступе на других сайтах в сети Интернет.
+						Информация предоставляется по принципу "как есть" и не подразумевает
+						под собой ответственности за ее неточность.
+					</p>
+					<p class="txtUserAccpting">
+						Для приобретения билетов сайт перенаправляет пользователя на другой
+						интернет ресурс, непосредственного продавца билетов. Пользователь
+						должен самостоятельно удостовериться в правильности
+						перенаправления(соответствие фильма, кинотеатра и времени сеанса)
+						перед тем как совершить покупку.
+					</p>
+					<p class="txtUserAccpting">
+						Сайт не собирает, не получает никаких данных от пользователя и не
+						проводит никаких операций, будь то денежные переводы или продажа.
+					</p>
+					<div id="accept" v-on:click="destroyUsrSugested">Принять</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -20,6 +49,7 @@
 <script>
 	export default {
 		name: "Footer",
+		props: ["cinemas"],
 		components: {},
 		data: function () {
 			return { usrSugested: true };
@@ -112,28 +142,33 @@
 <style>
 	#Footer {
 		font-family: "Ubuntu";
-		display: flex;
-		gap: 10px;
-		justify-items: center;
+		display: grid;
+		grid-row: 1fr 1fr;
+		grid-gap: 10px;
+		justify-items: left;
 		height: fit-content;
 		color: black;
-		padding-left: 15px;
+		width: auto;
+		padding-bottom: 20px;
+		padding-left: 4%;
+	}
+	.topline {
+		display: flex;
+		gap: 15px;
+		width: 100%;
+	}
+	.botomline {
+		display: flex;
+		gap: 10px;
+		justify-items: left;
+		height: fit-content;
+		width: 100%;
+	}
+	.clickabletext {
+		cursor: pointer;
+		color: white;
 	}
 
-	#feedBack {
-		cursor: pointer;
-		padding: 12px;
-		background-color: #f2d32c;
-		border-radius: 5px 5px 5px 5px;
-		box-shadow: 4px 4px 2px -1px rgba(0, 0, 0, 0.5);
-	}
-	#usrSgst {
-		cursor: pointer;
-		padding: 12px;
-		border-radius: 5px 5px 5px 5px;
-		background-color: #f2d32c;
-		box-shadow: 4px 4px 2px -1px rgba(0, 0, 0, 0.5);
-	}
 	#usrSgstLayOut {
 		background-color: RGBA(0, 0, 0, 0.68);
 		position: absolute;
@@ -178,7 +213,7 @@
 		text-align: start;
 		z-index: 1000;
 	}
-	p {
+	.txtUserAccpting {
 		text-align: left;
 		font-size: 18px;
 	}
@@ -197,5 +232,10 @@
 		align-items: center;
 		margin-inline: auto;
 		justify-content: center;
+	}
+	.linkfooter {
+		color: white;
+		font-style: normal;
+		text-decoration: none;
 	}
 </style>

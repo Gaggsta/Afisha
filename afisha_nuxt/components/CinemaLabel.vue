@@ -4,7 +4,7 @@
 		v-on:click="setPickedCinema(cinema.name)"
 		:title="'Показать кино только ' + cinema.name"
 	>
-		<p style="z-index: -2000; color: transparent; font-size: 0px">
+		<p class="hiden">
 			{{ "Кинотеатр " + cinema.name }}
 		</p>
 		<img id="img" :src="cinema.cinema_icon" :alt="cinema.name.slice(0, 2)" />
@@ -58,6 +58,12 @@
 	}
 	#cinemaLabel:hover {
 		cursor: pointer;
+	}
+	.hiden {
+		z-index: -2000;
+		color: transparent;
+		font-size: 0px;
+		position: absolute;
 	}
 	#cinemaLabel:active {
 		-webkit-transform: translate(4px);

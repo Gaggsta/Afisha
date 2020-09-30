@@ -2,8 +2,10 @@
 	<div id="mainFrame">
 		<div id="topAdd"></div>
 		<div id="headLine">
-			<div id="textName" v-on:click="gotosite" :title="origLoc">
-				<h1>{{ this.sitelabel }}</h1>
+			<div id="textName" :title="origLoc">
+				<a class="linkIndex" href="/"
+					><h1 class="h1">{{ this.sitelabel }}</h1></a
+				>
 			</div>
 			<div id="cinemaPool">
 				<div
@@ -22,16 +24,16 @@
 			<div v-if="films.length < 1" id="noFilms">
 				<div></div>
 				<div>
-					<p>К сожалению, сеансов на этот день я не знаю 🙁</p>
+					<p id="noFilmsText">К сожалению, сеансов на этот день я не знаю 🙁</p>
 				</div>
 				<div></div>
 			</div>
 			<div v-else v-for="film in films" :key="film.name">
 				<Film :film="film" />
 			</div>
-			<div></div>
+			<hr id="filmLine" v-if="films.length < 1" />
 		</div>
-		<Footer />
+		<Footer :cinemas="cinemas" />
 	</div>
 </template>
 <script>
@@ -77,7 +79,7 @@
 <style>
 	#mainFrame {
 		display: grid;
-		grid-template-rows: 0px 55px 55px 1fr 70px;
+		grid-template-rows: 0px 55px 55px 1fr auto;
 		margin-top: 15px;
 		background: rgba(117, 127, 131, 0.44);
 	}
@@ -88,9 +90,15 @@
 	}
 	#noFilms {
 		display: grid;
-		grid-template-columns: 1fr 600px 1fr;
-		font-size: 45px;
+		grid-template-columns: minmax(0, 1fr) 600px minmax(0, 1fr);
+	}
+	#noFilmsText {
+		text-align: center;
+		font-size: 40px;
 		letter-spacing: 1.2pt;
+		font-weight: 200;
+		margin-top: 15px;
+		margin-bottom: 0px;
 	}
 	#topAdd {
 		height: auto;
@@ -98,6 +106,15 @@
 	.cinemaPic {
 		height: 40px;
 		width: 40px;
+	}
+	#filmLine {
+		width: 85%;
+		color: #f2d32c;
+		background-color: #f2d32c;
+		border: 0px;
+		height: 4px;
+		align-self: center;
+		margin-bottom: 5px;
 	}
 	#headLine {
 		height: 50px;
@@ -113,7 +130,7 @@
 	#textName {
 		text-align: left;
 	}
-	h1 {
+	.h1 {
 		font-size: 45px;
 		margin: 0px;
 		font-weight: normal;
@@ -126,6 +143,11 @@
 		grid-gap: 10px;
 		padding: 6px;
 		padding-right: 0px;
+	}
+	.linkIndex {
+		color: white;
+		font-style: normal;
+		text-decoration: none;
 	}
 </style>
 

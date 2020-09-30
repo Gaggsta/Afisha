@@ -1,2 +1,6 @@
 *.sqlite3
-*.pyc
+.pyc
+films/__pycache__
+project/__pycache__
+films/__pycache__/*.pyc
+project/__pycache__/*.pyc

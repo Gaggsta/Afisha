@@ -3,34 +3,33 @@
 		<main>
 			<div class="container">
 				<div id="leftAdd"></div>
-				<div id="CntrFrame">
-					<div id="mainFrame">
-						<div id="topAdd"></div>
-						<div id="headLine">
-							<div id="textName" v-on:click="gotosite" :title="origLoc">
-								<h1>{{ this.sitelabel }}</h1>
-							</div>
+
+				<div id="mainFrame">
+					<div id="topAdd"></div>
+					<div id="headLine">
+						<div id="textName" v-on:click="gotosite" :title="origLoc">
+							<h1>{{ this.sitelabel }}</h1>
 						</div>
-						<div id="infoCinema">
-							<h2>Кинотеатр {{ cinema.name }}</h2>
-							<h4>Описание:</h4>
-							<p style="max-width: 500px; font-family: Ubuntu">
-								Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut
-								velit quasi, quos optio voluptate cum et doloribus ullam qui
-								blanditiis libero, minima consequuntur dolore. Quia accusantium
-								cumque nihil dicta odio!
-							</p>
-							<h4>Телефоны:</h4>
-							<p v-for="phone in cinema.phones">{{ phone }}</p>
-							<h4>Адрес кинозалов:</h4>
-							<p>{{ cinema.address }}</p>
-							<a id="url" :href="cinema.name"
-								>Посетить сайт {{ cinema.name }}</a
-							>
-							<hr id="filmLine" />
-						</div>
-						<Footer />
 					</div>
+					<div id="infoCinema">
+						<h2 class="headers">Кинотеатр {{ cinema.name }}</h2>
+						<h4 class="headers">Описание:</h4>
+						<p>
+							{{ cinema.info }}
+						</p>
+						<h4 class="headers">Телефоны:</h4>
+						<p v-for="phone in cinema.phones">{{ phone }}</p>
+						<h4 class="headers">Адрес кинозалов:</h4>
+						<p>{{ cinema.address }}</p>
+						<a
+							id="url"
+							:href="cinema.name"
+							:title="'Посетить сайт ' + cinema.name"
+							>Сайт {{ cinema.name }} >></a
+						>
+						<hr id="filmLine" />
+					</div>
+					<Footer :cinemas="cinemas" />
 				</div>
 				<div id="rightAdd"></div>
 				<Nuxt />
@@ -58,7 +57,7 @@
 		head() {
 			return {
 				title:
-					"Афиша Кино Калининград. Киноафиша Синема Парк Европа, Киносфера, Каро 7 Калининград-плаза, Эпицентр ",
+					"Киноафиша Синема Парк Европа, Киносфера, Каро 7 Калининград-плаза, Эпицентр ",
 				meta: [
 					// hid is used as unique identifier. Do not use `vmid` for it as it will not work
 					{
@@ -80,6 +79,8 @@
 			if (Object.keys(this.cinema).length == 0) {
 				this.cinema = this.getCinema(this.$nuxt._route.params.name);
 			}
+			document.title =
+				"Кинотеатр " + this.cinema.name + " Калининград. " + document.title;
 		},
 		async fetch({ store }) {
 			if (store.getters["cinemas/cinemas"].length === 0) {
@@ -95,8 +96,7 @@
 				}
 			},
 			getCinema(nameSlug) {
-				var cinemas = JSON.parse(localStorage.cinemas);
-				return cinemas.filter((e) => e.slug === nameSlug)[0];
+				return this.cinemas.filter((e) => e.slug === nameSlug)[0];
 			},
 			gotosite() {
 				window.location.href = window.location.origin;
@@ -140,6 +140,9 @@
 				1fr
 			);
 	}
+	.headers {
+		font-weight: 100;
+	}
 	#topAdd {
 		height: auto;
 	}
@@ -155,11 +158,17 @@
 		margin: 0px;
 		font-weight: normal;
 	}
+	p {
+		max-width: 500px;
+		font-family: Ubuntu;
+	}
+	a {
+		text-decoration: none;
+		font-weight: 100;
+	}
 	#leftAdd {
 	}
 	#rightAdd {
-	}
-	#CntrFrame {
 	}
 	#infoCinema {
 		height: auto;
@@ -168,7 +177,7 @@
 	}
 	#mainFrame {
 		display: grid;
-		grid-template-rows: 0px 55px 1fr 70px;
+		grid-template-rows: 0px 55px 1fr auto;
 		margin-top: 15px;
 		background: rgba(117, 127, 131, 0.44);
 	}

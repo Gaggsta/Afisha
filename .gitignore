@@ -3,9 +3,11 @@ docker_files/*
 nuxt.config.js
 .env.dev
 .gitignore
-*.pyc
+.pyc
 data/*
 .logs
 .log
-project/films/__pycache__/*
-project/project/__pycache__/*
+project/films/__pycache__
+project/project/__pycache__
+project/films/__pycache__/*.pyc
+project/project/__pycache__/*.pyc

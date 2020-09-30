@@ -3,21 +3,29 @@
 		<main>
 			<div class="container">
 				<div id="leftAdd"></div>
-				<div id="CntrFrame">
-					<div id="mainFrame">
-						<div id="topAdd"></div>
-						<div id="headLine">
-							<div id="textName" v-on:click="gotosite" :title="origLoc">
-								<h1>{{ this.sitelabel }}</h1>
-							</div>
+				<div id="mainFrame">
+					<div id="topAdd"></div>
+					<div id="headLine">
+						<div id="textName" :title="origLoc">
+							<a class="linkIndex" href="/"
+								><h1 class="h1">{{ this.sitelabel }}</h1></a
+							>
 						</div>
+					</div>
+					<div>
 						<div id="cinemasField">
 							<div id="cinema" v-for="cinema in cinemas" :key="cinema">
-								<h4>{{ cinema.name }}</h4>
+								<a class="linkIndex" :href="'cinema/' + cinema.slug">
+									<h4>{{ cinema.name }}</h4>
+									<p class="text">
+										{{ cinema.info.substr(0, 50) + "..." }}
+									</p>
+								</a>
 							</div>
 						</div>
-						<Footer />
 					</div>
+					<hr id="filmLine" />
+					<Footer :cinemas="cinemas" />
 				</div>
 				<div id="rightAdd"></div>
 				<Nuxt />
@@ -65,10 +73,7 @@
 					this.sitelabel = "КИНО КАЛИНИНГРАД";
 				}
 			},
-			getCinema(nameSlug) {
-				var cinemas = JSON.parse(localStorage.cinemas);
-				return cinemas.filter((e) => e.slug === nameSlug)[0];
-			},
+
 			gotosite() {
 				window.location.href = window.location.origin;
 			},
@@ -112,7 +117,6 @@
 			);
 	}
 	#topAdd {
-		height: auto;
 	}
 	#textName {
 		text-align: center;
@@ -121,7 +125,7 @@
 		font-weight: normal;
 		cursor: pointer;
 	}
-	h1 {
+	.h1 {
 		font-size: 45px;
 		margin: 0px;
 		font-weight: normal;
@@ -130,24 +134,43 @@
 	}
 	#rightAdd {
 	}
-	#CntrFrame {
+
+	.text {
+		max-width: 500px;
+		font-family: Ubuntu;
+		margin-top: 0.13em;
 	}
 	#cinema {
 		width: fit-content;
+		color: white;
+		font-style: normal;
+		text-decoration: none;
+		max-width: 500px;
+		margin-inline: 5%;
+	}
+	.linkIndex {
+		color: white;
+		font-style: normal;
+		text-decoration: none;
 	}
 	h4 {
 		font-size: 20px;
+		margin-block-start: 0.33em;
+		margin-block-end: 0.33em;
+		font-weight: 100;
 	}
 	#cinemasField {
 		display: grid;
-		height: auto;
-		padding-inline: 10%;
+		height: max-content;
 		text-align: left;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: repeat(auto-fill, 475px);
+		grid-gap: 1%;
+		justify-content: center;
+		padding-block: 5%;
 	}
 	#mainFrame {
 		display: grid;
-		grid-template-rows: 0px 55px 1fr 70px;
+		grid-template-rows: 0px 55px 1fr auto;
 		margin-top: 15px;
 		background: rgba(117, 127, 131, 0.44);
 	}
