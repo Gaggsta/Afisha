@@ -7,8 +7,10 @@
 				<div id="mainFrame">
 					<div id="topAdd"></div>
 					<div id="headLine">
-						<div id="textName" v-on:click="gotosite" :title="origLoc">
-							<h1>{{ this.sitelabel }}</h1>
+						<div id="textName" :title="origLoc">
+							<a class="linkIndex" href="/"
+								><h1 class="h1">{{ this.sitelabel }}</h1></a
+							>
 						</div>
 					</div>
 					<div id="infoCinema">
@@ -153,7 +155,12 @@
 		font-weight: normal;
 		cursor: pointer;
 	}
-	h1 {
+	.linkIndex {
+		color: white;
+		font-style: normal;
+		text-decoration: none;
+	}
+	.h1 {
 		font-size: 45px;
 		margin: 0px;
 		font-weight: normal;

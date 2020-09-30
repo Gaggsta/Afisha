@@ -2,19 +2,22 @@
 	<div id="Footer">
 		<div class="topline">
 			<a class="linkfooter" href="/cinema">Кинотеатры Калининграда</a>
-			<div v-for="cinema in cinemas" v-bind:key="cinema.name">
-				<a class="linkfooter" v-bind:href="'/cinema/' + cinema.slug">{{
-					cinema.name
-				}}</a>
-			</div>
+			<a
+				class="linkfooter"
+				v-bind:href="'/cinema/' + cinema.slug"
+				v-for="cinema in cinemas"
+				v-bind:key="cinema.name"
+				>{{ cinema.name }}</a
+			>
 		</div>
 		<div class="botomline">
-			<div class="clickabletext" v-on:click="openFeedBack">Обратная связь</div>
-
-			<div class="clickabletext" v-on:click="setUsrSugested">
-				Пользовательское соглашение
+			<div class="clickabletext linkfooter" v-on:click="openFeedBack">
+				Обратная связь
 			</div>
 
+			<div class="clickabletext linkfooter" v-on:click="setUsrSugested">
+				Пользовательское соглашение
+			</div>
 			<div v-if="!usrSugested" id="usrSgstLayOut">
 				<div id="usrSgstText">
 					<h3>Пользовательское соглашение</h3>

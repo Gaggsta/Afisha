@@ -10,8 +10,10 @@
 			<h1 class="errortext" v-if="error.statusCode === 404">
 				Такой страницы нет 🙁
 			</h1>
-			<h1 v-else>Какая-то ошибка приключилась, вернемся-ка домой</h1>
-			<a class="linkIndex btmBack" href="/">Домой</a>
+			<h1 class="errortext" v-else>
+				Какая-то ошибка приключилась, вернемся-ка домой
+			</h1>
+			<a class="btmBack" href="/">Домой</a>
 		</div>
 		<div id="rightAdd"></div>
 	</div>
@@ -76,6 +78,7 @@
 	}
 	.errortext {
 		margin-block: 5%;
+		font-weight: 100;
 	}
 	.linkIndex {
 		color: white;
@@ -83,6 +86,8 @@
 		text-decoration: none;
 	}
 	.btmBack {
+		font-style: normal;
+		text-decoration: none;
 		font-size: 20px;
 		margin-bottom: 20px;
 		text-align: center;

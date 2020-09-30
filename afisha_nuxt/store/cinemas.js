@@ -9,13 +9,8 @@ export const mutations = {
 export const actions = {
     async fetch({ commit }) {
         try {
-            if (!localStorage.cinemas) {
-                const cinemas = await this.$axios.$get('v1/cinemas', { headers: { 'Access-Control-Allow-Origin': '*' } })
-                commit('setCinemas', cinemas)
-                localStorage.cinemas = cinemas
-            } else {
-                cinemas = localStorage.cinemas
-            }
+            const cinemas = await this.$axios.$get('v1/cinemas', { headers: { 'Access-Control-Allow-Origin': '*' } })
+            commit('setCinemas', cinemas)
         } catch (e) {
             console.error(e)
         }
