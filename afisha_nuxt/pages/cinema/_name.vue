@@ -23,7 +23,7 @@
 						<p>{{ cinema.address }}</p>
 						<a
 							id="url"
-							:href="cinema.name"
+							:href="cinema.url"
 							:title="'Посетить сайт ' + cinema.name"
 							>Сайт {{ cinema.name }} >></a
 						>
