@@ -18,6 +18,8 @@
 						<h4 class="headers">Описание:</h4>
 						<p>
 							{{ cinema.info }}
+							Подробнее на сайте
+							<a class="linkIndex" href="https://kino-39.ru">www.kino-39.ru</a>
 						</p>
 						<h4 class="headers">Телефоны:</h4>
 						<p v-for="phone in cinema.phones">{{ phone }}</p>
